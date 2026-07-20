@@ -1,0 +1,7 @@
+{
+  "id":"layout-folio-002r","folioId":"folio-002r","imageAssetId":"/folios/real/002r.jpg",
+  "columns":[{"id":"column-002r-a","x":0.18,"y":0.06,"width":0.30,"height":0.78,"label":"Column A","verificationState":"draft"},{"id":"column-002r-b","x":0.52,"y":0.06,"width":0.34,"height":0.78,"label":"Column B","verificationState":"draft"}],
+  "regions":[{"id":"region-002r-page","x":0.10,"y":0.02,"width":0.86,"height":0.91,"label":"Visible page","classification":"page"},{"id":"region-002r-written-area","x":0.18,"y":0.06,"width":0.68,"height":0.78,"label":"Approximate written area","classification":"written area"},{"id":"region-002r-binding-edge","x":0.00,"y":0.00,"width":0.12,"height":0.96,"label":"Binding edge and adjacent leaf","classification":"non-textual area"}],
+  "verificationHistory":[{"state":"draft","reviewedBy":"contributor-project-gigas","reviewedAt":"2026-07-11","method":"visual layout inspection of local display derivative","notes":"Approximate regions only; line-level boundaries require editorial authoring and review.","citationIds":["citation-a148-iiif"]}],
+  "notes":"Visible evidence supports two columns, large rubricated initials, a binding edge, and areas of damage/obscuration. Coordinates are draft editorial guides, not a verified diplomatic segmentation."
+}

@@ -1,0 +1,12 @@
+{
+  "id": "folio-019r",
+  "latinDiplomatic": "CANDIDATE: TESTUS",
+  "englishLiteral": "I TEST",
+  "englishReadable": "I am testing",
+  "verification": {
+    "image": "verified_source",
+    "transcription": "candidate",
+    "literalTranslation": "candidate",
+    "readableTranslation": "candidate"
+  }
+}

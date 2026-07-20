@@ -1,0 +1,7 @@
+@media (max-width: 700px) {
+  .reader-shell { padding: .65rem .55rem 1rem; }
+  .codex-toolbar { align-items: flex-start; flex-direction: column; }.toolbar-actions { width: 100%; justify-content: flex-start; }.toolbar-actions button { flex: 1; padding: .55rem .3rem; }
+  .codex-reader { display: block; min-height: 70vh; }.folio { min-height: 68vh; }.folio-left { border-radius: .65rem; }.folio-right { display: none; }.folio-inner { min-height: 68vh; padding: 2rem 1.7rem; }.folio-inner::before { inset: 1rem; }.image-viewport { width: 100%; }.marginal-gloss { right: 1.5rem; width: 35%; }
+  .folio-navigation { padding-top: .8rem; }.folio-navigation button span { display: none; }.cover-screen::before { inset: .8rem; }
+  .region-authoring-layout, .evidence-grid, .comparison-grid { grid-template-columns: 1fr; }.editorial-tool { padding: 1.25rem .7rem 3rem; }.editorial-tool-actions > * { flex: 1; text-align: center; }
+}

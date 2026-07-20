@@ -1,0 +1,25 @@
+{
+  "items": [
+    {
+      "id": "canvas-1",
+      "items": [
+        {
+          "items": [
+            {
+              "body": {
+                "id": "https://www.manuscripta.se/image/1/full/full/0/default.jpg",
+                "width": 900,
+                "height": 1407,
+                "service": [
+                  {
+                    "id": "https://www.manuscripta.se/iiif/1"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

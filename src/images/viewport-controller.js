@@ -1,0 +1,7 @@
+export class ViewportController {
+  constructor({ element, onChange = () => {} }) { this.element = element; this.onChange = onChange; this.zoom = 1; this.x = 0; this.y = 0; this.pointer = null; this.bind() }
+  bind() { this.element.addEventListener('wheel', (event) => { event.preventDefault(); this.setZoom(this.zoom * (event.deltaY < 0 ? 1.15 : .87)) }, { passive: false }); this.element.addEventListener('dblclick', () => this.setZoom(this.zoom > 1 ? 1 : 2)); this.element.addEventListener('pointerdown', (event) => { this.pointer = { id: event.pointerId, x: event.clientX, y: event.clientY }; this.element.setPointerCapture(event.pointerId) }); this.element.addEventListener('pointermove', (event) => { if (!this.pointer || this.pointer.id !== event.pointerId) return; this.x -= event.clientX - this.pointer.x; this.y -= event.clientY - this.pointer.y; this.pointer = { ...this.pointer, x: event.clientX, y: event.clientY }; this.emit() }); this.element.addEventListener('pointerup', () => { this.pointer = null }); this.element.addEventListener('keydown', (event) => { if (event.key === '+' || event.key === '=') this.setZoom(this.zoom * 1.2); if (event.key === '-') this.setZoom(this.zoom / 1.2); if (event.key === '0') this.reset() }) }
+  setZoom(value) { this.zoom = Math.max(1, Math.min(8, value)); this.emit() }
+  reset() { this.zoom = 1; this.x = 0; this.y = 0; this.emit() }
+  emit() { this.onChange({ zoom: this.zoom, x: this.x, y: this.y }) }
+}

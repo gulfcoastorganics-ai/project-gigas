@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0",
+  "rightsStates": [
+    "public_domain",
+    "public_domain_mark",
+    "cc0",
+    "cc_by",
+    "cc_by_sa",
+    "institution_permission",
+    "unknown",
+    "restricted"
+  ],
+  "candidateTranscriptionAllowedByDefault": [
+    "public_domain",
+    "public_domain_mark",
+    "cc0",
+    "cc_by",
+    "cc_by_sa",
+    "institution_permission"
+  ],
+  "requiredFields": ["rightsState", "rightsStatement", "basis"],
+  "note": "The medieval work's age does not establish rights in a digitized image."
+}

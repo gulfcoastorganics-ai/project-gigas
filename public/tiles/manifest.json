@@ -1,0 +1,1 @@
+{"tileSize":256,"width":1400,"height":2000,"levels":3,"template":"/tiles/{z}/{x}-{y}.svg","licenseId":"license-local-fixture","notes":"Local deterministic fixture manifest; intentionally not an IIIF Image API response."}

@@ -1,0 +1,10 @@
+import fs from 'node:fs'
+import path from 'node:path'
+import crypto from 'node:crypto'
+const target = process.argv.find((arg) => arg.startsWith('--path='))?.split('=').slice(1).join('='); if (!target) { console.error('Usage: npm run verify:review-workflow-package -- --path=<package>'); process.exit(2) }
+const manifestPath = path.resolve(target, 'manifest.json'); if (!fs.existsSync(manifestPath)) { console.error(`Missing package manifest: ${manifestPath}`); process.exit(1) }
+const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8')); const errors = []
+if (manifest.folioId !== 'folio-002r') errors.push('Package is not for folio-002r.'); if (manifest.canonicalMutation !== false) errors.push('Package cannot permit canonical mutation.')
+for (const [file, expected] of Object.entries(manifest.files || {})) { const filePath = path.resolve(target, file); if (!fs.existsSync(filePath)) errors.push(`Missing packaged file: ${file}`); else { const content = fs.readFileSync(filePath); const hash = crypto.createHash('sha256').update(content).digest('hex'); if (hash !== expected.sha256) errors.push(`Checksum mismatch: ${file}`); if (content.byteLength !== expected.byteLength) errors.push(`Byte-length mismatch: ${file}`); if (manifest.packageKind === 'second-reader' && /records\/(line-reviews|assignments)\.json$/.test(file)) { const text = content.toString('utf8'); for (const forbidden of ['proposedDiplomaticReading','primaryReading','confidence','commentary','comparison','adjudication']) if (text.includes(`\"${forbidden}\"`)) errors.push(`Blind package leakage: ${file} contains ${forbidden}`) } } }
+if (manifest.packageKind === 'second-reader') { const boundary = path.resolve(target, 'records/blind-review-boundary.json'); if (!fs.existsSync(boundary)) errors.push('Blind package boundary manifest missing.'); }
+console.log(JSON.stringify({ package: path.resolve(target), packageKind: manifest.packageKind, files: Object.keys(manifest.files || {}).length, errors }, null, 2)); if (errors.length) process.exit(1)

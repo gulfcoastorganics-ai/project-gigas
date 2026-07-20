@@ -1,0 +1,6 @@
+{
+  "local-static": {"type":"local-static","src":"/folios/001r.svg","width":700,"height":1000},
+  "remote-static": {"type":"remote-static","src":"https://example.invalid/folio-placeholder.webp","width":700,"height":1000},
+  "tiled-manifest": {"type":"tiled-manifest","manifest":"/tiles/manifest.json","fallback":"/folios/001r.svg","width":1400,"height":2000},
+  "placeholder": {"type":"placeholder","label":"Placeholder asset; no source image supplied."}
+}

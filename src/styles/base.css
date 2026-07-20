@@ -1,0 +1,7 @@
+:root { font-family: Georgia, 'Times New Roman', serif; color: #eadfc8; background: #15100d; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; background: radial-gradient(circle at 50% 0%, #3b281d, #15100d 65%); }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible { outline: 2px solid #e5b86e; outline-offset: 3px; }
+button:disabled { opacity: .35; cursor: not-allowed; }
+.noscript { padding: 2rem; }

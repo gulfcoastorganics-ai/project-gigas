@@ -1,0 +1,7 @@
+[
+  {"id":"method-published-human","name":"Published human translation","verificationState":"externally-reviewed","notes":"Requires a resolvable published source and translator authority."},
+  {"id":"method-project-human","name":"Project human translation","verificationState":"draft","notes":"Requires contributor attribution and review history."},
+  {"id":"method-machine-assisted-reviewed","name":"Machine-assisted human-reviewed","verificationState":"draft","notes":"Requires tool/date disclosure and named human review."},
+  {"id":"method-machine-assisted-unreviewed","name":"Machine-assisted unreviewed","verificationState":"draft","notes":"Always release-blocking."},
+  {"id":"method-inherited-placeholder","name":"Inherited legacy placeholder","verificationState":"placeholder","notes":"Not translation evidence."}
+]

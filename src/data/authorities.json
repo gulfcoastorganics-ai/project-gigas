@@ -1,0 +1,7 @@
+[
+  {"id":"authority-project-gigas","name":"Project GIGAS editorial workspace","type":"internal project contributor","website":"","repository":"","notes":"Internal authority for pipeline and interface records; not a historical authority.","accessedAt":"2026-07-10","verificationState":"placeholder"},
+  {"id":"authority-unassigned","name":"Authority to be assigned","type":"institution","website":"","repository":"","notes":"Placeholder. Replace before publishing any authoritative material.","accessedAt":"","verificationState":"placeholder"},
+  {"id":"authority-national-library-sweden","name":"National Library of Sweden","type":"library","website":"https://www.kb.se/eng/the-codex-gigas.html","repository":"https://www.manuscripta.se/ms/100500","notes":"Holding institution and catalog/repository authority for Codex Gigas, A 148.","accessedAt":"2026-07-10","verificationState":"externally-reviewed"},
+  {"id":"authority-anna-wolodarski","name":"Anna Wolodarski","type":"scholar","website":"https://www.manuscripta.se/ms/100500","repository":"https://www.manuscripta.se/ms/100500","notes":"Cataloguer named in the National Library of Sweden A 148 record.","accessedAt":"2026-07-10","verificationState":"externally-reviewed"},
+  {"id":"authority-per-adolphson","name":"Per B. Adolphson","type":"photographer","website":"","repository":"https://www.manuscripta.se/ms/100500","notes":"Photographer attribution stated in the A 148 IIIF/catalog record.","accessedAt":"2026-07-10","verificationState":"externally-reviewed"}
+]

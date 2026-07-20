@@ -1,0 +1,10 @@
+import './dubstep.js'
+import './riddim.js'
+import './melodicDubstep.js'
+import './drumAndBass.js'
+import './trap.js'
+import './wave.js'
+import './cinematicBass.js'
+import './experimentalBass.js'
+
+export { getProfile, getAllProfiles, getProfilesForGenre, resolveGenreToProfiles } from './index.js'

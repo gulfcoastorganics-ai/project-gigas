@@ -1,0 +1,10 @@
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import fs from 'node:fs'
+import os from 'node:os'
+import path from 'node:path'
+import { registerExternal, validateRights, rightsAllowed, metadataHash } from '../src/manuscript/external-source.js'
+import { sha256 } from '../src/manuscript/source-ingestion.js'
+
+test('public-domain source rights are accepted but age alone is not enough', () => { assert.equal(rightsAllowed({ rightsState: 'public_domain', rightsStatement: 'Public domain mark', basis: 'institutional rights statement' }), true); assert.equal(rightsAllowed({ rightsState: 'unknown', rightsStatement: 'Unknown', basis: 'none' }), false); assert.deepEqual(validateRights({ rightsState: 'unknown' }), ['rights statement is missing', 'public-domain or license basis is missing']) })
+test('external source registration records hashes and rejects unknown rights', () => { const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'gigas-external-')); const image = path.join(dir, 'folio.jpg'); fs.copyFileSync(path.join(process.cwd(), 'public/folios/real/002r.jpg'), image); const metadata = path.join(dir, 'metadata.json'); const base = { sourceTitle: 'Test public-domain manuscript image', holdingInstitution: 'Test institution', collection: 'Test collection', sourceIdentifier: 'TEST-001', acquisitionDate: '2026-07-12', acquisitionMethod: 'test fixture', rights: { rightsState: 'public_domain', rightsStatement: 'Public domain mark', basis: 'test institutional statement', attributionRequired: false }, registrant: 'Project GIGAS test' }; fs.writeFileSync(metadata, JSON.stringify(base)); const receipt = registerExternal(image, metadata); assert.equal(receipt.canonical, false); assert.equal(receipt.sourceSha256, sha256(fs.readFileSync(image))); assert.equal(receipt.metadataSha256, metadataHash(base)); const blocked = { ...base, sourceIdentifier: 'TEST-002', rights: { rightsState: 'unknown', rightsStatement: '', basis: '' } }; fs.writeFileSync(metadata, JSON.stringify(blocked)); assert.throws(() => registerExternal(image, metadata), /rights statement is missing/) })

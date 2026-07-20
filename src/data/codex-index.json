@@ -1,0 +1,25 @@
+{
+  "title": "Project GIGAS folio index",
+  "sections": [
+    {"id":"old-testament","title":"Old Testament","description":"Sampled Genesis folios", "firstFolio":"folio-001r"},
+    {"id":"new-testament","title":"New Testament","description":"Not yet imported", "firstFolio":null},
+    {"id":"josephus","title":"Josephus","description":"Not yet imported", "firstFolio":null},
+    {"id":"isidore","title":"Isidore","description":"Not yet imported", "firstFolio":null},
+    {"id":"medical","title":"Medical texts","description":"Not yet imported", "firstFolio":null},
+    {"id":"calendar","title":"Calendar","description":"Not yet imported", "firstFolio":null},
+    {"id":"chronicle","title":"Chronicle","description":"Not yet imported", "firstFolio":null},
+    {"id":"other","title":"Other","description":"Not yet imported", "firstFolio":null}
+  ],
+  "folios": [
+    {"id":"folio-001r","folioNumber":"1r","section":"Genesis","chapter":"Genesis 1","title":"The beginning","keywords":["genesis","creation","old testament"],"verificationStatus":"placeholder","source":"./folios/folio-001r.json"},
+    {"id":"folio-001v","folioNumber":"1v","section":"Genesis","chapter":"Genesis 1","title":"The first day","keywords":["genesis","creation"],"verificationStatus":"placeholder","source":"./folios/folio-001v.json"},
+    {"id":"folio-002r","folioNumber":"2r","section":"Genesis","chapter":"Genesis (catalog range; passage not yet mapped)","title":"National Library of Sweden A 148 · 2r","keywords":["genesis","codex gigas","A 148","2r","pilot"],"verificationStatus":"draft","source":"./folios/folio-002r.json"},
+    {"id":"folio-002v","folioNumber":"2v","section":"Genesis","chapter":"Genesis (catalog range; passage not yet mapped)","title":"National Library of Sweden A 148 · 2v","keywords":["genesis","codex gigas","A 148","2v","pilot"],"verificationStatus":"draft","source":"./folios/folio-002v.json"},
+    {"id":"folio-003r","folioNumber":"3r","section":"Genesis","chapter":"Genesis 3","title":"The fall","keywords":["genesis","fall","serpent"],"verificationStatus":"placeholder","source":"./folios/folio-003r.json"},
+    {"id":"folio-003v","folioNumber":"3v","section":"Genesis","chapter":"Genesis 3","title":"Expulsion","keywords":["genesis","eden"],"verificationStatus":"placeholder","source":"./folios/folio-003v.json"},
+    {"id":"folio-004r","folioNumber":"4r","section":"Genesis","chapter":"Genesis 4","title":"Cain and Abel","keywords":["genesis","cain","abel"],"verificationStatus":"placeholder","source":"./folios/folio-004r.json"},
+    {"id":"folio-004v","folioNumber":"4v","section":"Genesis","chapter":"Genesis 4","title":"The offering","keywords":["genesis","cain","abel"],"verificationStatus":"placeholder","source":"./folios/folio-004v.json"},
+    {"id":"folio-005r","folioNumber":"5r","section":"Genesis","chapter":"Genesis 5","title":"The generations","keywords":["genesis","genealogy"],"verificationStatus":"placeholder","source":"./folios/folio-005r.json"},
+    {"id":"folio-005v","folioNumber":"5v","section":"Genesis","chapter":"Genesis 5","title":"The line of Adam","keywords":["genesis","genealogy"],"verificationStatus":"placeholder","source":"./folios/folio-005v.json"}
+  ]
+}

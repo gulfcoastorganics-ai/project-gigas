@@ -1,0 +1,220 @@
+{
+  "assets": [
+    {
+      "assetPath": "/folios/real/002r.jpg",
+      "sha256": "d8f10668664574fbfb498c4387cb01a8df3ae03cf7cfaa5b7085826c22ee4880",
+      "byteLength": 570173,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-image",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/folios/real/002v.jpg",
+      "sha256": "aa7e8b1d4fcd8103b6b1a08b8af17448e2f47b2bce43e5a6eaefbf7327c04dc7",
+      "byteLength": 718681,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002v-image",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/0/0-0.jpg",
+      "sha256": "207ac860f571e4b9be28d5e936b4461914458b77c4cd9038ebf3c6551bf42b15",
+      "byteLength": 21419,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/1/0-0.jpg",
+      "sha256": "3c167506ff28ac32744d4030463c09ab0987ee5c90a80575e258c9df29af5c09",
+      "byteLength": 16976,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/1/0-1.jpg",
+      "sha256": "f9f2337a9513dbcb8448876b81b3151510adc36c8449fbbb8690391105527980",
+      "byteLength": 17699,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/1/1-0.jpg",
+      "sha256": "b64eb1cc8fbf0a4b48dbefdb665d65fc285e5b22dcdfabb9748b39bfe9f5216a",
+      "byteLength": 17412,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/1/1-1.jpg",
+      "sha256": "c2364b45c24ed8bacb5c91caadafeace7ab6edbbd6ecc6b00141b4bfafa13e35",
+      "byteLength": 22388,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/2/0-0.jpg",
+      "sha256": "7e90a6504ae806df9c8a514c2caff6a1bad2c20a8edf8465243df686e2fce82d",
+      "byteLength": 16658,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/2/0-1.jpg",
+      "sha256": "a0c4a143dd2a89af68dfdc287869272c21c9a9d4ef9b0c9174f2c3b1f4157609",
+      "byteLength": 13969,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/2/0-2.jpg",
+      "sha256": "2820f168baf3706daabc260b5660e4949a1b5a1f1f9921ca7d5209315e9eadaa",
+      "byteLength": 14841,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/2/0-3.jpg",
+      "sha256": "7cfcf71e146a8a1f6bcc9033f9d27ea5126f2ac4b0d730155d1926e60c9230ce",
+      "byteLength": 15165,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/2/1-0.jpg",
+      "sha256": "bc4358820d64f2ef60f0c9923d2d0945776fc1d6b2b7f5d7e8a4adb872701dd5",
+      "byteLength": 12264,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/2/1-1.jpg",
+      "sha256": "ab4b23384f42dc18c4356f59ef8543b615446d3aac3af66700e490b590ff3985",
+      "byteLength": 14599,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/2/1-2.jpg",
+      "sha256": "efcc1363508b8109c0b41576d84d5ca4d4b946edcf00ba698bc4075b1bcf5d8a",
+      "byteLength": 14709,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/2/1-3.jpg",
+      "sha256": "a253ea2f864c95c0968b7bd1356edc78aca387b3a589d675f034675961a1ff6d",
+      "byteLength": 15236,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/2/2-0.jpg",
+      "sha256": "642a9f9c2a080751d62e9f5825276bf1aa3b4c20a8ffae9cf632c8e3b684c953",
+      "byteLength": 9907,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/2/2-1.jpg",
+      "sha256": "fe9dd86f9d306ffb5434081386f53f7a5da85327a9af40418d7b186cf209761d",
+      "byteLength": 16935,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/2/2-2.jpg",
+      "sha256": "285e991a0185f68aafa06fde1866fea750db8d734a9677541fb856a0fb4cb961",
+      "byteLength": 17477,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/2/2-3.jpg",
+      "sha256": "eaaf2c646a246023f03ddb74f0ddc50c22041928771e80d487e7f37919e4089d",
+      "byteLength": 17039,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/2/3-0.jpg",
+      "sha256": "79bde8c5873cd279d872efb2331a447c9e6ae0f2d26f23e083a8dd1c8bf54af3",
+      "byteLength": 10542,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/2/3-1.jpg",
+      "sha256": "a72d9906cae841dcadcde71225abe3ad838fa88bd0d5f017f6f6bf7d069ea014",
+      "byteLength": 19944,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/2/3-2.jpg",
+      "sha256": "51d44a1de527de805c13cfce9615114171956bb9a8fc90307095d9cd56b43d9d",
+      "byteLength": 18822,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/2/3-3.jpg",
+      "sha256": "594339f1f82ebe55abcb957b25e6e2d09a5e163493e70f28a254af786254b613",
+      "byteLength": 18912,
+      "mimeType": "image/jpeg",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    },
+    {
+      "assetPath": "/tiles/real/002r/manifest.json",
+      "sha256": "1b0bf545a9f4ec56b1736ee7a11b3f82916620385a7e5c84acd80676777ad93d",
+      "byteLength": 520,
+      "mimeType": "application/json",
+      "sourceCaptureId": "capture-folio-002r-tiles",
+      "licenseId": "license-cc-by-4-0",
+      "verificationState": "internally-reviewed"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import { statistics, duplicateLineRate, repeatedParagraphs, calibrateQuality, qualityWarnings, crossPageDuplication } from '../src/manuscript/quality-calibration.js'
+
+test('quality statistics expose robust quartiles and percentile', () => { const result = statistics([1, 2, 3, 4, 100]); assert.equal(result.median, 3); assert.equal(result.q3, 4); assert.ok(Math.abs(result.percentile95 - 80.8) < 1e-9) })
+test('duplicate and repeated paragraph checks are deterministic', () => { const lines = [{ diplomaticLatin: 'a' }, { diplomaticLatin: 'a' }, { diplomaticLatin: 'b' }, { diplomaticLatin: 'b' }, { diplomaticLatin: 'c' }]; assert.equal(duplicateLineRate(lines), .8); assert.equal(repeatedParagraphs([{ diplomaticLatin: 'a' }, { diplomaticLatin: 'b' }, { diplomaticLatin: 'c' }, { diplomaticLatin: 'a' }, { diplomaticLatin: 'b' }, { diplomaticLatin: 'c' }]), true) })
+test('robust warnings replace the fixed line-count warning', () => { const calibration = calibrateQuality(Array.from({ length: 20 }, (_, i) => ({ lines: Array.from({ length: i + 10 }, (_, n) => ({ diplomaticLatin: `line-${i}-${n}` })), height: 1200 }))); const warnings = qualityWarnings(Array.from({ length: 12 }, (_, i) => ({ diplomaticLatin: `line-${i}` })), { height: 1200 }, calibration); assert.ok(!warnings.includes('line_count_high_for_bounded_crop_review_required')) })
+test('cross-page long duplicate output is flagged', () => { const long = 'a '.repeat(60); const findings = crossPageDuplication([{ page: 1, regions: [{ regionId: 'r1', lines: [{ diplomaticLatin: long }] }] }, { page: 2, regions: [{ regionId: 'r2', lines: [{ diplomaticLatin: long }] }] }]); assert.equal(findings.length, 1) })

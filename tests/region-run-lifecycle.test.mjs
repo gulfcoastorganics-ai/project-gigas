@@ -1,0 +1,13 @@
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import fs from 'node:fs'
+import os from 'node:os'
+import path from 'node:path'
+import { durableRun, classifyTransportFailure, redactExcerpt } from '../src/manuscript/region-run-lifecycle.js'
+
+async function run(invoke, normalize = async () => ({ candidate: null })) { const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'gigas-region-run-')); const file = path.join(dir, 'result.json'); const result = await durableRun({ initial: { runId: 'test', sourceId: 's', regionId: 'r', requestManifestHash: 'h' }, runFile: file, invoke, normalize }); return JSON.parse(fs.readFileSync(file, 'utf8')) }
+for (const [name, error] of [['construction', new Error('request serialization failed')], ['rejected fetch', Object.assign(new Error('fetch failed'), { code: 'ECONNRESET' })], ['dns', Object.assign(new Error('getaddrinfo ENOTFOUND'), { code: 'ENOTFOUND' })], ['abort', Object.assign(new Error('The operation was aborted'), { name: 'AbortError' })]]) test(`durable blocked artifact: ${name}`, async () => { const result = await run(async () => { throw error }); assert.equal(result.state, 'blocked'); assert.ok(result.finishedAt); assert.ok(result.lastSuccessfulState); assert.ok(result.safeError) })
+test('HTTP and response failures classify safely', () => { assert.equal(classifyTransportFailure({ httpStatus: 401 }), 'http_401'); assert.equal(classifyTransportFailure({ httpStatus: 429 }), 'http_429'); assert.equal(classifyTransportFailure({ httpStatus: 500 }), 'http_5xx'); assert.equal(classifyTransportFailure({ status: 'failed', rawProviderResponse: '' }), 'provider_empty_response') })
+test('credential-like values are redacted', () => { assert.equal(redactExcerpt('Authorization: Bearer abc123 api_key=secret'), 'Authorization: Bearer [REDACTED] api_key=[REDACTED]') })
+test('successful lifecycle persists ordered terminal state', async () => { const result = await run(async () => ({ status: 'completed', provider: 'openrouter', rawProviderResponse: '{}', rawProviderResponseHash: 'x' }), async () => ({ normalizedCandidate: { lines: [] }, validationStatus: 'valid' })); assert.equal(result.state, 'completed'); assert.equal(result.canonical, false); assert.equal(result.reviewRequired, true) })
+test('existing run file is not overwritten by a new lifecycle', async () => { const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'gigas-existing-')); const file = path.join(dir, 'result.json'); fs.writeFileSync(file, JSON.stringify({ runId: 'old', state: 'blocked' })); const result = await run(async () => ({ status: 'completed' })); assert.notEqual(result.runId, 'old'); assert.equal(JSON.parse(fs.readFileSync(file, 'utf8')).runId, 'old') })

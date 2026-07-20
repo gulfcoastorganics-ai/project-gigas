@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "1.0",
+  "sourceId": "external-459e4da71e7fd69d189a8196c9d9a9beb03026e4bbbdce06b37dec39a74981a0",
+  "institution": "National Library of Sweden",
+  "shelfmark": "A 148",
+  "title": "Codex Gigas",
+  "variantTitle": "Djävulsbibeln",
+  "language": "Latin",
+  "approximateDate": "1210–1220",
+  "extentLeaves": 309,
+  "license": "CC BY 4.0",
+  "licenseUri": "https://creativecommons.org/licenses/by/4.0/",
+  "attribution": "National Library of Sweden; photographer Per B. Adolphson.",
+  "catalogUrl": "https://libris.kb.se/bib/20821675",
+  "viewerUrl": "https://www.manuscripta.se/ms/100500",
+  "pdfUrl": "https://libris.kb.se/assets/codex-gigas-4gb.pdf",
+  "pdfAccessUrl": "https://libris.kb.se/showrecord?d=libris&f=&g=&m=10&n=1&q=onr%3A20821675&r=&s=r&t=v&tab1=getit&tab2=ill&tab3=full&vw=",
+  "iiifManifestUrl": "https://www.manuscripta.se/iiif/100500/manifest.json",
+  "catalogIdentifier": "19091448",
+  "evidenceRole": "institutional_catalog_and_digital_surrogate",
+  "accessDate": "2026-07-16T23:52:07.861Z",
+  "retrieval": {
+    "catalog": {
+      "url": "https://libris.kb.se/bib/20821675",
+      "status": 200,
+      "retrievedAt": "2026-07-16T23:52:07.858Z"
+    },
+    "iiifManifest": {
+      "url": "https://www.manuscripta.se/iiif/100500/manifest.json",
+      "status": 200,
+      "retrievedAt": "2026-07-16T23:52:07.861Z"
+    }
+  },
+  "catalog": {},
+  "iiifManifest": {
+    "items": [
+      {
+        "id": "canvas-1",
+        "items": [
+          {
+            "items": [
+              {
+                "body": {
+                  "id": "https://www.manuscripta.se/image/1/full/full/0/default.jpg",
+                  "width": 900,
+                  "height": 1407,
+                  "service": [
+                    {
+                      "id": "https://www.manuscripta.se/iiif/1"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "sourceRecordHash": "df97552eb6e7790ac6804e292a14ddd8bfbaeecd15f9692d5f7715ac760bd9b4",
+  "canonical": false
+}

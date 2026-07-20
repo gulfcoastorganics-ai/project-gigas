@@ -1,0 +1,15 @@
+import fs from 'node:fs'
+import path from 'node:path'
+import { root, sha256 } from '../src/manuscript/source-ingestion.js'
+import { invokeVisionModelSafe } from '../src/manuscript/vision-provider-runtime.js'
+import { compactRegionPrompt, compactRegionSchema, extractAssistant, parseSalvage, normalizeSalvage } from '../src/manuscript/batch-recovery.js'
+
+const sourceId = 'external-459e4da71e7fd69d189a8196c9d9a9beb03026e4bbbdce06b37dec39a74981a0'; const page = 10; const regionId = `${sourceId}-page-0010-left-01`; const base = path.join(root, 'data/candidates/batches/batch-2026-07-13T15-27-10-128Z-2540/pages/page-0010/regions', regionId); const imagePath = path.join(base, 'crop.jpg'); const imageHash = sha256(fs.readFileSync(imagePath)); const output = path.join(root, 'data/candidates/provider-comparisons', 'gemini', regionId, `run-${new Date().toISOString().replace(/[:.]/g, '-')}-${process.pid}`); fs.mkdirSync(output, { recursive: true })
+process.env.GIGAS_VISION_PROVIDER = 'gemini'; process.env.GIGAS_VISION_MODEL = 'gemini-3-flash-preview'; process.env.GIGAS_VISION_MAX_RETRIES = '0'; process.env.GIGAS_VISION_MAX_OUTPUT_TOKENS = '8192'; process.env.GIGAS_GEMINI_THINKING_LEVEL = 'minimal'; delete process.env.GIGAS_GEMINI_THINKING_BUDGET; process.env.GIGAS_VISION_TIMEOUT_MS = '180000'
+const prompt = compactRegionPrompt
+const result = await invokeVisionModelSafe({ imagePath, expectedImageHash: imageHash, prompt, schema: compactRegionSchema, requestId: `gemini-3-minimal-comparison-${Date.now()}`, timeoutMs: 180000 })
+const parsed = result.parsedOutput || (result.rawResponse ? parseSalvage(extractAssistant(result.rawResponse).content).parsed : null)
+const normalized = parsed ? normalizeSalvage(parsed, { regionId, sourceId, sourcePage: page }) : null
+if (result.rawResponse) fs.writeFileSync(path.join(output, 'raw-response.txt'), result.rawResponse)
+fs.writeFileSync(path.join(output, 'result.json'), JSON.stringify({ provider: result.provider, model: result.model, actualRoutedModel: result.actualRoutedModel, status: normalized?.candidate ? 'completed' : result.status, failureClassification: normalized?.candidate ? null : result.failureClassification || null, responseId: result.responseId || null, usage: result.usage || null, latencyMs: result.responseLatencyMs || null, sourceId, page, regionId, imageHash, rawResponseHash: result.rawProviderResponseHash || (result.rawResponse ? sha256(Buffer.from(result.rawResponse)) : ''), parsedOutput: parsed, candidate: normalized?.candidate || null, validationErrors: [...(result.validationErrors || []), ...(normalized?.findings || []).map((f) => f.type)], canonical: false, candidateOnly: true, reviewRequired: true }, null, 2) + '\n')
+console.log(JSON.stringify({ output, provider: result.provider, model: result.model, status: normalized?.candidate ? 'completed' : result.status, failureClassification: normalized?.candidate ? null : result.failureClassification || null, responseId: result.responseId || null, rawResponseHash: result.rawProviderResponseHash || '', lines: normalized?.candidate?.lines?.length || 0, imageHash }, null, 2))

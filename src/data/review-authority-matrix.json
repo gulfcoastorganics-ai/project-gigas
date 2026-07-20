@@ -1,0 +1,5 @@
+[
+  {"scope":"diplomatic-transcription","permittedRoles":["external reviewer","subject specialist"],"minimumQualificationState":"externally-documented","independentReviewRequired":true,"externalReviewRequired":true,"blindComparisonRecommended":true,"permittedVerificationOutcome":"externally-reviewed"},
+  {"scope":"line-region-geometry","permittedRoles":["internal reviewer","external reviewer","subject specialist"],"minimumQualificationState":"project-designated","independentReviewRequired":false,"externalReviewRequired":false,"blindComparisonRecommended":false,"permittedVerificationOutcome":"internally-reviewed"},
+  {"scope":"technical","permittedRoles":["technical reviewer"],"minimumQualificationState":"project-designated","independentReviewRequired":false,"externalReviewRequired":false,"blindComparisonRecommended":false,"permittedVerificationOutcome":"internally-reviewed"}
+]

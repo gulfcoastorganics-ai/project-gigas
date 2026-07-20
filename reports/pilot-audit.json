@@ -1,0 +1,38 @@
+{
+  "generatedAt": "2026-07-11",
+  "note": "All percentages describe workflow/documentation coverage, not historical accuracy.",
+  "folioId": "folio-002r",
+  "layers": {
+    "layoutGuides": 3,
+    "authoredRegions": 0,
+    "diplomaticSegments": 0,
+    "expandedSegments": 0,
+    "literalSegments": 0,
+    "readableSegments": 0,
+    "alignments": 0,
+    "citations": 2,
+    "uncertainties": 0
+  },
+  "review": {
+    "assignments": 2,
+    "openAssignments": 2,
+    "blockingFindings": 1
+  },
+  "eligibility": {
+    "textSearch": false,
+    "exportPackage": true,
+    "browserTest": false,
+    "releaseReady": false
+  },
+  "remainingPlaceholders": [
+    "folio-001r",
+    "folio-001v",
+    "folio-002v",
+    "folio-003r",
+    "folio-003v",
+    "folio-004r",
+    "folio-004v",
+    "folio-005r",
+    "folio-005v"
+  ]
+}

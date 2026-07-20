@@ -1,0 +1,4 @@
+import fs from 'node:fs'
+import path from 'node:path'
+import { parseArgs, sha256, mediaType, imageDimensions } from '../src/manuscript/source-ingestion.js'
+const args = parseArgs(process.argv.slice(2)); try { const file = path.resolve(args.path); const manifest = JSON.parse(fs.readFileSync(`${file}.manifest.json`, 'utf8')); const bytes = fs.readFileSync(file); const result = { valid: manifest.bytes === bytes.length && manifest.sha256 === sha256(bytes) && Boolean(mediaType(file)), path: file, bytes: bytes.length, sha256: sha256(bytes), contentType: mediaType(file), dimensions: imageDimensions(bytes, mediaType(file)), canonical: false }; console.log(JSON.stringify(result, null, 2)); if (!result.valid) process.exit(1) } catch (error) { console.error(`ERROR: ${error.message}`); process.exit(1) }

@@ -1,0 +1,11 @@
+import { TileCache } from './tile-cache.js'
+import { visibleTiles } from './tile-manifest.js'
+import { ViewportController } from './viewport-controller.js'
+
+export class TiledViewer {
+  constructor({ element, adapter, fallback }) { this.element = element; this.adapter = adapter; this.fallback = fallback; this.cache = new TileCache(32); this.requests = new Map(); this.controller = new ViewportController({ element, onChange: (view) => this.render(view) }) }
+  async mount() { try { this.manifest = await this.adapter.getTileManifest(); if (!this.manifest) throw new Error('No tile manifest supplied.'); this.element.classList.add('tiled-viewport'); this.element.tabIndex = 0; this.render({ zoom: 1, x: 0, y: 0 }); } catch { this.element.classList.add('tiled-fallback'); this.element.innerHTML = `<img src="${this.fallback}" alt="Tiled image fallback" />` } }
+  render(view) { if (!this.manifest) return; const tiles = visibleTiles(this.manifest, { x: Math.max(0, view.x), y: Math.max(0, view.y), width: this.element.clientWidth || 700, height: this.element.clientHeight || 1000 }, view.zoom); const keys = new Set(tiles.map((tile) => `${tile.level}/${tile.x}/${tile.y}`)); for (const [key, request] of this.requests) if (!keys.has(key)) { request.abort(); this.requests.delete(key) } for (const tile of tiles) this.loadTile(tile, view) }
+  loadTile(tile, view) { const key = `${tile.level}/${tile.x}/${tile.y}`; if (this.cache.get(key)) return; if (this.requests.has(key)) return; const request = new AbortController(); this.requests.set(key, request); const image = new Image(); image.alt = ''; image.className = 'tile'; image.style.left = `${tile.x * this.manifest.tileSize - view.x}px`; image.style.top = `${tile.y * this.manifest.tileSize - view.y}px`; image.width = this.manifest.tileSize; image.height = this.manifest.tileSize; image.onload = () => { this.cache.set(key, image); this.requests.delete(key); this.element.append(image) }; image.onerror = () => { this.requests.delete(key); image.remove() }; request.signal.addEventListener('abort', () => { image.src = ''; image.remove() }); image.src = tile.url }
+  reset() { this.controller.reset(); this.cache.clear(); this.element.querySelectorAll('.tile').forEach((tile) => tile.remove()) }
+}

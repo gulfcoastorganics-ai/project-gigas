@@ -1,0 +1,6 @@
+import fs from 'node:fs'
+import path from 'node:path'
+import crypto from 'node:crypto'
+import { findSource, parseArgs, root, candidateRoot, writeJson, validateRegion } from '../src/manuscript/source-ingestion.js'
+const args = parseArgs(process.argv.slice(2)); if (!args['source-page']) { console.error('ERROR: use --source-page=1'); process.exit(1) }
+try { const { source, page } = findSource(args['source-id'], args['source-page']); const region = { schemaVersion: '1.0', regionId: `region-${source.sourceId}-page-${String(page.sourcePage).padStart(4, '0')}-full`, sourceId: source.sourceId, sourcePage: page.sourcePage, imagePath: page.imagePath, normalizedCoordinates: { x: 0, y: 0, width: 1, height: 1 }, pixelCoordinates: { x: 0, y: 0, width: page.pixelWidth, height: page.pixelHeight }, columnAssignment: null, linePlaceholders: [], sourceImageSha256: page.sha256, status: 'candidate_unreviewed', canonical: false, reviewRequired: true }; validateRegion(region.normalizedCoordinates); const output = path.join(candidateRoot, 'regions', `${region.regionId}.json`); writeJson(output, region); console.log(JSON.stringify({ output: path.relative(root, output), ...region }, null, 2)) } catch (error) { console.error(`ERROR: ${error.message}`); process.exit(1) }

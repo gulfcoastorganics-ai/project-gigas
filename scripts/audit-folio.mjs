@@ -1,0 +1,2 @@
+import { spawnSync } from 'node:child_process'; import path from 'node:path'
+const root=path.resolve(import.meta.dirname,'..');if(!process.argv.includes('--folio=002r')){console.error('ERROR: only --folio=002r is configured');process.exit(1)}const result=spawnSync(process.execPath,[path.join(root,'scripts/audit-pilot.mjs')],{encoding:'utf8'});console.log(result.stdout);process.stderr.write(result.stderr);process.exit(result.status||0)

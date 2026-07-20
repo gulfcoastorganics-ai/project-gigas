@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0",
+  "sourceId": "external-459e4da71e7fd69d189a8196c9d9a9beb03026e4bbbdce06b37dec39a74981a0",
+  "pages": [
+    {
+      "sourcePage": 1,
+      "canvasId": "canvas-1",
+      "label": null,
+      "folioLabel": null,
+      "imageUrl": "https://www.manuscripta.se/image/1/full/full/0/default.jpg",
+      "imageServiceId": "https://www.manuscripta.se/iiif/1",
+      "width": 900,
+      "height": 1407,
+      "downloadStatus": "not_downloaded",
+      "verificationStatus": "unverified"
+    }
+  ],
+  "canonical": false
+}

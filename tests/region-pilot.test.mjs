@@ -1,0 +1,8 @@
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import { buildIiifRegionUrl, normalizeRegionCandidate, validateRegionBounds } from '../src/manuscript/region-pilot.js'
+
+test('IIIF crop URL is standards compliant', () => { assert.equal(buildIiifRegionUrl('https://iiif.manuscripta.se/service', { x: 1, y: 2, width: 10, height: 20 }), 'https://iiif.manuscripta.se/service/1,2,10,20/1600,/0/default.jpg') })
+test('region bounds reject overflow', () => { assert.ok(validateRegionBounds({ x: 2390, y: 0, width: 20, height: 10 }).includes('region_outside_source_bounds')) })
+test('provider policy assertions are removed and retained as findings', () => { const r = normalizeRegionCandidate({ regionAssessment: { containsVisibleText: true }, lines: [], decorations: [], warnings: [], canonical: true, reviewRequired: false, translation: 'English' }, { sourceId: 's', sourcePage: 10, regionId: 'r' }); assert.equal(r.candidate.canonical, false); assert.equal(r.candidate.reviewRequired, true); assert.ok(r.findings.some((x) => x.field === 'canonical')); assert.ok(r.findings.some((x) => x.field === 'translation')) })
+test('duplicate IDs, invalid confidence, and non-illegible empty lines are rejected', () => { const r = normalizeRegionCandidate({ regionAssessment: { containsVisibleText: true }, lines: [{ lineId: 'a', sequence: 0, diplomaticLatin: '', confidence: 2, illegible: false }, { lineId: 'a', sequence: 1, diplomaticLatin: 'abc', confidence: .5 }], decorations: [], warnings: [] }, { sourceId: 's', sourcePage: 10, regionId: 'r' }); assert.ok(r.errors.includes('duplicate_or_missing_line_id')); assert.ok(r.errors.includes('invalid_confidence_line_0')); assert.ok(r.errors.includes('empty_reading_line_0')) })
