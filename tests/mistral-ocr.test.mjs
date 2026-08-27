@@ -1,9 +1,15 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
+import os from 'node:os'
+import path from 'node:path'
 import { buildMistralOcrRequest, invokeMistralOcr, mapMistralOcrResponse, retryDelayForAttempt, MISTRAL_OCR_ENDPOINT, MISTRAL_OCR_MODEL } from '../src/manuscript/mistral-ocr-provider.js'
 
-const crop = 'data/candidates/batches/batch-2026-07-14T01-26-26-060Z-21001/pages/page-0020/regions/external-459e4da71e7fd69d189a8196c9d9a9beb03026e4bbbdce06b37dec39a74981a0-page-0020-right-03/crop.jpg'
+const fixtureDir = fs.mkdtempSync(path.join(os.tmpdir(), 'gigas-mistral-ocr-'))
+const crop = path.join(fixtureDir, 'crop.jpg')
+const onePixelJpeg = Buffer.from('/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////2wBDAf//////////////////////////////////////////////////////////////////////////////////////wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIQAxAAAAF//8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABBQJ//8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAgBAwEBPwF//8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAgBAgEBPwF//8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQAGPwJ//8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPyF//9oADAMBAAIAAwAAABD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAEDAQE/EH//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAECAQE/EH//xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAE/EH//2Q==', 'base64')
+fs.writeFileSync(crop, onePixelJpeg)
+
 const originalKey = process.env.MISTRAL_API_KEY
 test('targeted retry schedule supports 5/15/45 seconds', () => { assert.deepEqual([0, 1, 2].map((attempt) => retryDelayForAttempt(attempt, '5000,15000,45000')), [5000, 15000, 45000]) })
 function fakeResponse(body, status = 200, headers = {}) { return { ok: status >= 200 && status < 300, status, headers: new Headers(headers), text: async () => typeof body === 'string' ? body : JSON.stringify(body) } }
@@ -13,7 +19,7 @@ test('Mistral OCR request uses the dedicated endpoint and image data URL', () =>
   assert.equal(MISTRAL_OCR_ENDPOINT, 'https://api.mistral.ai/v1/ocr')
   assert.equal(request.model, MISTRAL_OCR_MODEL)
   assert.equal(request.document.type, 'image_url')
-  assert.match(request.document.image_url, /^data:image\/jpeg;base64,/) 
+  assert.match(request.document.image_url, /^data:image\/jpeg;base64,/)
   assert.equal(request.include_blocks, true)
 })
 
@@ -75,4 +81,8 @@ test('OCR markdown is not retained as formatting in line content', () => {
   assert.deepEqual(result.lines.map((line) => line.t), ['arma', 'uir'])
 })
 
-test.after(() => { if (originalKey) process.env.MISTRAL_API_KEY = originalKey; else delete process.env.MISTRAL_API_KEY })
+test.after(() => {
+  if (originalKey) process.env.MISTRAL_API_KEY = originalKey
+  else delete process.env.MISTRAL_API_KEY
+  fs.rmSync(fixtureDir, { recursive: true, force: true })
+})

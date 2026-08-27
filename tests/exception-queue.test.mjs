@@ -7,7 +7,12 @@ test('exception collection scans all newest batch pages and preserves terminal h
   assert.match(source, /jobsByPage/); assert.match(source, /retry_exhausted/); assert.match(source, /human_review_required/); assert.doesNotMatch(source, /first >= 200 && first <= 399/)
 })
 
-test('page 59 remains a terminal noncanonical exception', () => {
-  const queue = JSON.parse(fs.readFileSync('data/candidates/exceptions/queue.json', 'utf8')); const page = queue.exceptions.find((item) => item.page === 59)
-  assert.ok(page); assert.equal(page.retryStatus, 'retry_exhausted'); assert.equal(page.resolutionStatus, 'human_review_required'); assert.equal(page.canonical, false); assert.equal(page.reviewRequired, true)
+test('terminal exception records remain noncanonical and require human review', () => {
+  const queue = JSON.parse(fs.readFileSync('tests/fixtures/exception-queue.json', 'utf8'))
+  const page = queue.exceptions.find((item) => item.page === 59)
+  assert.ok(page)
+  assert.equal(page.retryStatus, 'retry_exhausted')
+  assert.equal(page.resolutionStatus, 'human_review_required')
+  assert.equal(page.canonical, false)
+  assert.equal(page.reviewRequired, true)
 })

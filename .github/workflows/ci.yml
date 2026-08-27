@@ -21,4 +21,21 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      - run: npm run validate:data
+      - run: npm run verify:assets
+      - run: npm run audit:sources
       - run: npm run build
+      - name: Smoke production preview
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4317 >/tmp/gigas-preview.log 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid" 2>/dev/null || true' EXIT
+          for i in {1..40}; do
+            if curl --fail --silent --show-error http://127.0.0.1:4317/ >/tmp/gigas-index.html; then
+              break
+            fi
+            sleep 0.25
+          done
+          test -s /tmp/gigas-index.html
+      - name: Production dependency audit
+        run: npm audit --omit=dev --audit-level=high
