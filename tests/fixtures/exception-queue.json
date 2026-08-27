@@ -1,0 +1,11 @@
+{
+  "exceptions": [
+    {
+      "page": 59,
+      "retryStatus": "retry_exhausted",
+      "resolutionStatus": "human_review_required",
+      "canonical": false,
+      "reviewRequired": true
+    }
+  ]
+}
